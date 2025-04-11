@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cruse5l81emeb"]
+
+[ext_resource type="Script" uid="uid://bg8yjabfsbukq" path="res://player.gd" id="1_gf172"]
+[ext_resource type="Texture2D" uid="uid://d11t7fnx7qinh" path="res://icon.svg" id="2_dl81w"]
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(289, 179)
+script = ExtResource("1_gf172")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dl81w")
