@@ -1,16 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://cruse5l81emeb"]
+[gd_scene load_steps=5 format=3 uid="uid://cruse5l81emeb"]
 
 [ext_resource type="Script" uid="uid://bg8yjabfsbukq" path="res://player.gd" id="1_gf172"]
-[ext_resource type="Texture2D" uid="uid://d11t7fnx7qinh" path="res://icon.svg" id="2_dl81w"]
+[ext_resource type="Texture2D" uid="uid://168m22myvuh7" path="res://sprite_frame_1.png" id="2_c0nl8"]
+[ext_resource type="Texture2D" uid="uid://bn4le4ewhophh" path="res://sprite_frame_2.png" id="3_1dtnr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dl81w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c0nl8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1dtnr")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}]
 
 [node name="Area2D" type="Area2D"]
-position = Vector2(289, 179)
+position = Vector2(297, 151)
 script = ExtResource("1_gf172")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dl81w")
+animation = &"eyes"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_dl81w")

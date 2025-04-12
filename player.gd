@@ -23,6 +23,9 @@ func _process(delta: float) -> void:
 		velocity += Vector2(-1,0)
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO,screen_size)
 	pass
