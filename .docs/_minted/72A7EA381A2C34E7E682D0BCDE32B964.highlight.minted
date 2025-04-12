@@ -1,0 +1,43 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{extends}\PYG{+w}{ }\PYG{n}{Node}
+\PYG{c+c1}{\PYGZsh{} \PYGZdq{}Entity\PYGZdq{}}
+\PYG{c+c1}{\PYGZsh{} Position \PYGZhy{}\PYGZgt{} Vector2D}
+\PYG{c+c1}{\PYGZsh{} life \PYGZhy{}\PYGZgt{} int or float}
+\PYG{c+c1}{\PYGZsh{} score \PYGZhy{}\PYGZgt{} int}
+
+\PYG{err}{@}\PYG{k}{export}\PYG{+w}{ }\PYG{k}{var}\PYG{+w}{ }\PYG{n}{savePath}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n+nb+nbType}{String}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{user://save\PYGZus{}game.dat}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{k}{var}\PYG{+w}{ }\PYG{n}{data}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n+nb+nbType}{Dictionary}
+\PYG{k}{var}\PYG{+w}{ }\PYG{n}{test}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n+nb+nbType}{Dictionary}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Life}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}
+\PYG{+w}{	}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Score}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{	}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Position}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n+nb+nbType}{Vector2}\PYG{o}{.}\PYG{n}{ZERO}\PYG{p}{,}
+\PYG{+w}{	}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Store}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Item\PYGZhy{}1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mf}{4.99}\PYG{p}{,}
+\PYG{+w}{		}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Item\PYGZhy{}2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{l+m+mf}{5.89}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{func}\PYG{+w}{ }\PYG{n}{saveGame}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+nbType}{bool}\PYG{p}{:}
+\PYG{+w}{	}\PYG{k}{var}\PYG{+w}{ }\PYG{n}{file}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FileAccess}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{savePath}\PYG{p}{,}\PYG{n}{FileAccess}\PYG{o}{.}\PYG{n}{WRITE}\PYG{p}{)}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{n}{file}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb+nbType}{null}\PYG{p}{:}
+\PYG{+w}{		}\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb+bp}{false}
+\PYG{+w}{	}\PYG{n}{file}\PYG{o}{.}\PYG{n}{store\PYGZus{}var}\PYG{p}{(}\PYG{n}{test}\PYG{p}{)}
+\PYG{+w}{	}\PYG{n}{file}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+nbType}{null}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb+bp}{true}
+
+\PYG{k}{func}\PYG{+w}{ }\PYG{n}{loadGame}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+nbType}{bool}\PYG{p}{:}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{n}{FileAccess}\PYG{o}{.}\PYG{n}{file\PYGZus{}exists}\PYG{p}{(}\PYG{n}{savePath}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{		}\PYG{k}{var}\PYG{+w}{ }\PYG{n}{file}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FileAccess}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{savePath}\PYG{p}{,}\PYG{n}{FileAccess}\PYG{o}{.}\PYG{n}{READ}\PYG{p}{)}
+\PYG{+w}{		}\PYG{k}{if}\PYG{+w}{ }\PYG{n}{file}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n+nb+nbType}{null}\PYG{p}{:}
+\PYG{+w}{			}\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb+bp}{false}
+\PYG{+w}{		}\PYG{n}{test}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{file}\PYG{o}{.}\PYG{n}{get\PYGZus{}var}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{		}\PYG{n}{file}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb+nbType}{null}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb+bp}{true}
+
+\PYG{k}{func}\PYG{+w}{ }\PYG{n}{\PYGZus{}ready}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n+nb+nbType}{void}\PYG{p}{:}
+\PYG{+w}{	}\PYG{n}{saveGame}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{	}\PYG{n}{loadGame}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{	}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{test}\PYG{p}{)}
+\PYG{+w}{	}\PYG{k}{pass}
+
+\end{MintedVerbatim}
