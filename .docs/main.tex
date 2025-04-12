@@ -1,1 +1,107 @@
-*
+\documentclass{article}
+
+\usepackage{minted}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+
+\usemintedstyle{vim}
+
+\definecolor{darkgrey}{rgb}{0.15,0.15,0.2}
+
+\title{Game Design}
+\author{Authors}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section*{Estructura}
+
+Este es el comienzo de la documentación, aún no está siquiera en su versión definitiva.
+
+\subsection*{Secciones}
+
+\subsubsection*{Entidades}
+
+Las entidades tendrán los siguientes datos en común; Vida, Puntaje, Daño.
+Los datos que no se usan tendrán que ser nulos.
+
+\subsubsection*{Entidad Jugador}
+
+\begin{minted}[frame=lines,linenos,bgcolor=darkgrey]{gdscript}
+extends Area2D
+
+@export var speed : int = 400
+var screen_size : Vector2
+
+func _ready() -> void:
+	screen_size = get_viewport_rect().size
+	pass
+
+
+func _process(delta: float) -> void:
+	var velocity : Vector2 = Vector2.ZERO
+	if Input.is_action_pressed("move_up"):
+		velocity += Vector2(0,-1)
+	if Input.is_action_pressed("move_down"):
+		velocity += Vector2(0,1)
+	if Input.is_action_pressed("move_right"):
+		velocity += Vector2(1,0)
+	if Input.is_action_pressed("move_left"):
+		velocity += Vector2(-1,0)
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+	position += velocity * delta
+	position = position.clamp(Vector2.ZERO,screen_size)
+	pass
+\end{minted}
+
+
+
+\subsubsection*{Sistema de Guardado-Carga}
+
+\begin{minted}[frame=lines,linenos,bgcolor=darkgrey]{gdscript}
+extends Node
+# "Entity"
+# Position -> Vector2D
+# life -> int or float
+# score -> int
+
+@export var savePath : String = "user://save_game.dat"
+var data : Dictionary
+var test : Dictionary = {
+	"Life" : 3,
+	"Score" : 0,
+	"Position" : Vector2.ZERO,
+	"Store" : {
+		"Item-1" : 4.99,
+		"Item-2" : 5.89
+	}
+}
+
+func saveGame() -> bool:
+	var file = FileAccess.open(savePath,FileAccess.WRITE)
+	if file == null:
+		return false
+	file.store_var(test)
+	file = null
+	return true
+
+func loadGame() -> bool:
+	if FileAccess.file_exists(savePath):
+		var file = FileAccess.open(savePath,FileAccess.READ)
+		if file == null:
+			return false
+		test = file.get_var()
+		file = null
+	return true
+
+func _ready() -> void:
+	saveGame()
+	loadGame()
+	print(test)
+	pass
+
+\end{minted}
+
+
+\end{document}
