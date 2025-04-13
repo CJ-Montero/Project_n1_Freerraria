@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhl6gpv2fp6w6"]
+
+[ext_resource type="Script" uid="uid://odbc1btbsu30" path="res://block/block.gd" id="1_ov5y0"]
+
+[node name="Block" type="Area2D"]
+script = ExtResource("1_ov5y0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
